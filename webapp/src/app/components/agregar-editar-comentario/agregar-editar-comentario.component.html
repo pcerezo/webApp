@@ -1,0 +1,33 @@
+<h3 class="mt-3">Agregar comentario</h3>
+
+<form id="formulario" [formGroup]="agregarComentario" (ngSubmit)="agregar($event)">
+    <div class="mb-3">
+        <label for="tituloInput" class="form-label">Título</label>
+        <input formControlName="titulo" id="tituloInput" type="text" class="form-control" autocomplete="off">
+        
+        @if (agregarComentario.get("titulo")?.invalid && agregarComentario.get("titulo")?.touched) {
+            <span class="text-danger">El <strong>título</strong> es requerido</span>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label for="creadorInput" class="form-label">Creador</label>
+        <input formControlName="creador" id="creadorInput" type="text" class="form-control" autocomplete="off">
+
+        @if (agregarComentario.get("creador")?.invalid && agregarComentario.get("creador")?.touched) {
+            <span class="text-danger">El <strong>creador</strong> es requerido</span>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label for="comentarioInput" class="form-label">Comentario</label>
+        <textarea formControlName="texto" id="comentarioInput" type="text" class="form-control" rows="8" autocomplete="off"></textarea>
+
+        @if (agregarComentario.get("texto")?.invalid && agregarComentario.get("texto")?.touched) {
+            <span class="text-danger">El <strong>texto</strong> es requerido</span>
+        }
+    </div>
+
+    <button id="submitBtn" type="submit" [disabled]="agregarComentario.invalid" class="btn btn-primary float-end">Aceptar</button>
+    <a class="btn btn-secondary" routerLink="/" routerLinkActive="active">Volver</a>
+</form>

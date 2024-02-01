@@ -15,8 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class ListComentariosComponent {
   listComentarios: Comentario[] = [
-    {titulo: 'Angular', creador: 'Yo', fechaCreacion: new Date().toLocaleDateString(), texto: 'Probando un comentario'},
-    {titulo: 'Angular', creador: 'Pepito', fechaCreacion: new Date().toLocaleDateString(), texto: 'Pepito también está probando un comentario'}
+    //{titulo: 'Angular', creador: 'Yo', fechaCreacion: new Date().toLocaleDateString(), texto: 'Probando un comentario'},
+    //{titulo: 'Angular', creador: 'Pepito', fechaCreacion: new Date().toLocaleDateString(), texto: 'Pepito también está probando un comentario'}
   ];
 
   constructor(private _comentarioService: ComentarioService) {}
@@ -28,10 +28,19 @@ export class ListComentariosComponent {
   getComentarios() {
     this._comentarioService.getListComentarios().subscribe(
       data => {
-      console.log(data);
+      this.listComentarios = data;
     },
     error => {
       console.log(error);
+    });
+  }
+
+  eliminarComentario(id: any) {
+    console.log("Botón de eliminar");
+    this._comentarioService.deleteComentario(id).subscribe(data => {
+      this.getComentarios();
+    }, error => {
+      console.log("Error: " + error);
     });
   }
 

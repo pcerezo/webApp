@@ -3,5 +3,5 @@ export interface Comentario {
     titulo: string;
     creador: string;
     texto: string;
-    fechaCreacion: string;
+    fechaCreacion: Date;
 }

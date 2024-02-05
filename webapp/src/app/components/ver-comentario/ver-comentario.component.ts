@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComentarioService } from '../../services/comentario.service';
 import { Comentario } from '../../interfaces/Comentario';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ver-comentario',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './ver-comentario.component.html',
   styleUrl: './ver-comentario.component.css'
 })

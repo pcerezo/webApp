@@ -25,13 +25,13 @@
                         <a [routerLink]="['ver', comentario.id]"> {{ comentario.titulo }}</a>
                     </td>
                     <td>{{ comentario.creador }}</td>
-                    <td>{{ comentario.fechaCreacion }}</td>
+                    <td>{{ comentario.fechaCreacion | date:'dd/MM/yyyy' }}</td>
                     <td>{{ comentario.texto }}</td>
                     <td class="opcion">
-                        <button class="btn btn-primary btn-sm float-end">Editar</button>
+                        <button class="btn btn-primary btn-sm float-end" [routerLink]="['editar', comentario.id]">Editar</button>
                     </td>
                     <td class="opcion">
-                        <button (click)="eliminarComentario(comentario.id)" class="btn btn-danger btn-sm float-end">Eliminar</button>
+                        <button class="btn btn-danger btn-sm float-end" (click)="eliminarComentario(comentario.id)">Eliminar</button>
                     </td>
                 </tr>
             }

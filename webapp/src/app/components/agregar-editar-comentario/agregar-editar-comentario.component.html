@@ -1,11 +1,11 @@
-<h3 class="mt-3">Agregar comentario</h3>
+<h3 class="mt-3">{{ accion }} comentario</h3>
 
-<form id="formulario" [formGroup]="agregarComentario" (ngSubmit)="agregar($event)">
+<form id="formulario" [formGroup]="formComentario" (ngSubmit)="submit($event)">
     <div class="mb-3">
         <label for="tituloInput" class="form-label">Título</label>
         <input formControlName="titulo" id="tituloInput" type="text" class="form-control" autocomplete="off">
         
-        @if (agregarComentario.get("titulo")?.invalid && agregarComentario.get("titulo")?.touched) {
+        @if (formComentario.get("titulo")?.invalid && formComentario.get("titulo")?.touched) {
             <span class="text-danger">El <strong>título</strong> es requerido</span>
         }
     </div>
@@ -14,7 +14,7 @@
         <label for="creadorInput" class="form-label">Creador</label>
         <input formControlName="creador" id="creadorInput" type="text" class="form-control" autocomplete="off">
 
-        @if (agregarComentario.get("creador")?.invalid && agregarComentario.get("creador")?.touched) {
+        @if (formComentario.get("creador")?.invalid && formComentario.get("creador")?.touched) {
             <span class="text-danger">El <strong>creador</strong> es requerido</span>
         }
     </div>
@@ -23,11 +23,16 @@
         <label for="comentarioInput" class="form-label">Comentario</label>
         <textarea formControlName="texto" id="comentarioInput" type="text" class="form-control" rows="8" autocomplete="off"></textarea>
 
-        @if (agregarComentario.get("texto")?.invalid && agregarComentario.get("texto")?.touched) {
+        @if (formComentario.get("texto")?.invalid && formComentario.get("texto")?.touched) {
             <span class="text-danger">El <strong>texto</strong> es requerido</span>
         }
     </div>
 
-    <button id="submitBtn" type="submit" [disabled]="agregarComentario.invalid" class="btn btn-primary float-end">Aceptar</button>
+    @if (id == undefined || id == null) {
+    <button id="submitBtn" type="submit" [disabled]="formComentario.invalid" class="btn btn-primary float-end">Aceptar</button>
+    }
+    @else {
+    <button id="submitBtn" type="submit" [disabled]="formComentario.invalid" class="btn btn-primary float-end">Editar</button>
+    }
     <a class="btn btn-secondary" routerLink="/" routerLinkActive="active">Volver</a>
 </form>

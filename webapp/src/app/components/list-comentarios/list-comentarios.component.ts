@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { ComentarioService } from '../../services/comentario.service';
 import { error } from 'console';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-list-comentarios',
   standalone: true,
-  imports: [RouterLink, HttpClientModule],
+  imports: [RouterLink, HttpClientModule, CommonModule, FormsModule],
   templateUrl: './list-comentarios.component.html',
   styleUrl: './list-comentarios.component.css'
 })
@@ -40,7 +41,7 @@ export class ListComentariosComponent {
     this._comentarioService.deleteComentario(id).subscribe(data => {
       this.getComentarios();
     }, error => {
-      console.log("Error: " + error);
+      console.log("Error en borrado: " + error);
     });
   }
 
